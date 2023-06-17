@@ -1,36 +1,34 @@
 package sanghoon.study.MQTTPublisher.repository;
 
-import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import sanghoon.study.MQTTPublisher.beans.MQTTConnector;
+import sanghoon.study.MQTTPublisher.domain.MQTTMessage;
 
-import java.util.HashMap;
 import java.util.Map;
 
-@Getter
+@Slf4j
+@Repository
 public class MQTTMessageRepository implements MessageRepository{
-    // MQTT 메시지의 토픽명
-    private String topic;
-    // MQTT 메시지의 수신시간
-    private String receivedTime;
-    // MQTT 메시지의 데이터
-    private String data;
+    private final MQTTConnector mqttConnector;
 
-    public MQTTMessageRepository(String topic,String receivedTime,String data){
-        this.topic = topic;
-        this.receivedTime = receivedTime;
-        this.data = data;
-    }
-
-    public String toString(){
-        return "Topic : "+this.topic+", Received Time : "+receivedTime+", Data : "+data;
+    @Autowired
+    public MQTTMessageRepository(MQTTConnector mqttConnector){
+        this.mqttConnector = mqttConnector;
     }
 
     @Override
-    public Map<String, String> getMessage() {
-        Map<String, String> message = new HashMap<String, String>();
-        message.put("topic",getTopic());
-        message.put("receivedTime",getReceivedTime());
-        message.put("data",data);
+    public void publish(Map<String, String> message) {
+        if(mqttConnector.isConnected()==false){
+            log.error("MQTT Broker is not connected");
+            return;
+        }
 
-        return message;
+        //MQTTMessage message = new MQTTMessage()
+    }
+
+    public void publish(MQTTMessage message){
+        publish(message.getMessage());
     }
 }
