@@ -32,3 +32,10 @@ MQTT Broker와 연결 상태(Connected or Disconnected)를 조회할 수 있도�
 * mosquitto & mosquitto-clients
 
 > **참고)** MQTT Broker는 개발 PC에 설치해서 사용해도 상관없습니다.
+
+### API
+
+#### Message 발행
+
+* Method : POST
+* URL - http://127.0.0.1:8080/message

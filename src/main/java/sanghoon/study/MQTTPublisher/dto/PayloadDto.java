@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MessageDto {
-    private String topic;
-    private String message;
+public class PayloadDto {
+    private String topic; // 토픽
+    private String message; // 메시지
 }
