@@ -1,4 +1,4 @@
-# MQTT Message Publisher
+# MQTT Publisher
 
 ## 개요
 MQTT 브로커로 REST API를 통해서 요청받은 메시지를 발행하는 아주 간단한 애플리케이션입니다.
